@@ -37,7 +37,7 @@ h4, button {
 }
 
 /* paragraphs, links, lists */
-p, li, a {
+p {
   font-size: clamp(1rem, 10vw, 1.5rem);
   line-height: 1.3;
   font-family: "Open Sans", sans-serif;
@@ -48,11 +48,11 @@ p, li, a {
 li, a {
   list-style-type: none;
   color: var(--light-grey);
+  text-decoration: none;
+  font-family: "Open Sans", sans-serif;
+  font-size: 14px;
 }
 
-a {
-  text-decoration: none;
-}
 
 i {
   padding-right: 15px;
@@ -76,7 +76,6 @@ i {
 
 }
 
-
 /* ------------- */
 /* Cards Layout */
 /* ------------- */
@@ -85,7 +84,7 @@ i {
   margin: 2rem;
   padding: 0;
 
-  max-width: 30rem;
+  max-width: 25rem;
 
   border-radius: 25px;
   box-shadow: 2px 3px 10px 0.2px var(--dark-grey);
@@ -93,18 +92,19 @@ i {
 
 .card-wrapper:hover {
   cursor: pointer;
-  opacity: 0.4;
+  opacity: 0.6;
 }
+.card-front-top > .card-flip {
+  display: none;
+}
+
+/* TODO */
+/*Create a clickable flip card using the list icon in the corner. This will reveal an ingredients list. Make the rest of the icon a link to show the whole recipe*/
 
 /* CARD COMPONENTS */
 
 .card-front-top {
   margin: 0;
-  background: url("../assets/images/stove-pots.jpg");
-  background-position: bottom;
-  background-size: cover;
-  background-repeat: no-repeat;
-
   border-radius: 25px 25px 0px 0px;
   min-height: 14rem;
 
@@ -112,6 +112,13 @@ i {
   justify-content: flex-end;
 }
 
+#card-one {
+  background: url("../assets/images/stove-pots.jpg");
+  background-position: bottom;
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-repeat: no-repeat;
+}
 .card-content {
   padding: 1rem 2rem;
   align-self: flex-start;
@@ -230,38 +237,51 @@ footer {
 
 .nav-links {
   /*TODO remove this colouring after making sure it all works*/
-  background-color: var(--light-grey);
-  min-width: 10rem;
+  min-width: 6rem;
   min-height: 12rem;
   padding: 1rem;
 
-
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: flex-end;
-}
-.link-box {
   display: none;
+  flex-direction: column;
+  align-items: flex-end;
+  justify-content: flex-end;
+
 }
-.nav-wrapper input:checked ~ .link-box {
-  display: block;
+
+/* Show navigation */
+.nav-wrapper input:checked ~ * ~ .nav-links {
+  display: flex;
 }
-/*TODO Reduce code by fixing link information in typography at END*/
-.nav-links a {
-  color: var(--black);
-  font-size: clamp(1.4rem, 3vw, 2rem);
-  padding: 2px;
-  font-weight: 600;
+
+/* Links */
+.nav-links li,a {
+  color: var(--white);
+  font-weight: 500;
+  font-size: 24px;
+  padding: 10px;
+  text-align: right;
+  list-style-type: none;
 }
-/*TODO Use code from a1 to stylize how these links operate*/
-a:hover {
-  background-color: var(--red);
+
+/* Nav Hover*/
+.nav-links a:hover {
+  animation-name: nav-hover;
+  animation-duration: 500ms;
+  animation-fill-mode: forwards;
+}
+
+@keyframes nav-hover {
+  100% {
+    background-color: var(--red);
+    color: var(--white);
+    opacity: 0.7;
+  }
 }
 
 /* --------- */
 /* Hamburger */
 /* --------- */
+
 .nav-wrapper span {
   background-color: var(--light-grey);
   border-radius: 4px;
@@ -271,14 +291,14 @@ a:hover {
   height: 8px;
 
   top: 2rem;
-  right: 4.2rem;
+  right: 2.2rem;
   position: relative;
 
   display: block;
   z-index: 1;
 
   /*Transition*/
-transition: transform 0.5s cubic-bezier(0.77, 0, 0.175, 1), opacity 0.6s ease;
+transition: transform 0.2s cubic-bezier(0.5, 0.2, 0.075, 1), opacity 50ms ease;
 }
 
 
@@ -289,9 +309,8 @@ transition: transform 0.5s cubic-bezier(0.77, 0, 0.175, 1), opacity 0.6s ease;
   
   position: absolute;
   top: 1.5rem;
-  left: -4.45rem;
+  left: -2.2rem;
   cursor: pointer;
-  /*TODO UNCOMMENT WHEN FINISHED*/
   opacity: 0;
   z-index: 2;
 
@@ -299,32 +318,55 @@ transition: transform 0.5s cubic-bezier(0.77, 0, 0.175, 1), opacity 0.6s ease;
 
 /* Hamburger to X animation */
 .nav-wrapper input:checked ~ span {
-  transform: rotate(45deg) translate(12px, 15px);
+  transform: rotate(45deg) translate(14px, 16px);
   opacity: 0.8;
 }
 
 /*Rotate last bar */
 .nav-wrapper input:checked ~ span:nth-last-child(2) {
-  transform: rotate(-45deg) translate(5px, -7px);
+  transform: rotate(-45deg) translate(-4px, 4px);
   opacity: 0.8;
 }
 
 /* Hide Middle Bar */
 .nav-wrapper input:checked ~ span:nth-child(3) {
-  opacity: 0;
+  display: none;
 }
+
+/*Hover highlight*/
+.nav-wrapper input:hover ~ span {
+  opacity: 0.7;
+}
+
 /* Desktop Layout */
 
-@media screen and (min-width: 400px) {
+@media screen and (min-width: 50rem) {
+  .nav-wrapper > span {
+    display: none;
+  }
+  .nav-wrapper > input {
+    display: none;
+  }
+  .nav-wrapper {
+    display: flex;
+    align-items: center;
+  }
+  .nav-links {
+    display: flex;
+    flex-direction: row;
 
+  }
+  .nav-links a {
+    font-size: 32px;
+  }
+  .topbar {
+    display: flex;
+    flex-direction: row;
+  }
 }
 
 
 /* ---------------------------------- */
-
-/* ********************* */
-/* ANIMATIONS & OBJECTS */
-/* ******************** */
 
 /*---------*/
 /*Site Logo*/
