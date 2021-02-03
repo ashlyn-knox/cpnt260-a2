@@ -1,0 +1,326 @@
+/* --------------------------- */
+/* Custom Variables and Globals*/
+/* --------------------------- */
+
+:root {
+  /* Colors */
+  --black: hsl(80, 10%, 12%);
+  --green: hsl(168, 44%, 49%);
+  --red: hsl(1, 80%, 64%);
+  --purple: hsl(276, 10%, 80%);
+  --dark-grey: hsl(230, 8%, 28%);
+  --light-grey: hsl(33, 5%, 92%);
+  --light-grey-lowOp: hsla(33, 5%, 92%, 0.5);
+
+  --white: hsl(350, 2%, 98%);
+}
+
+/* --------------- */
+/* FONTS */
+/* --------------- */
+
+
+h1 {
+  font-family: "Lato", sans-serif;
+  font-size: clamp(2.5rem, 3vw, 3rem);
+
+}
+h2, h3 {
+  font-family: "Lato", sans-serif;
+  font-size: clamp(2rem, 3vw, 2.5rem);
+}
+/*Sizes for tabs and buttons */
+h4, button {
+  font-family: "Open Sans", sans-serif;
+  font-size: clamp(1.4rem, 10vw, 1.8rem);
+  font-weight: 600;
+}
+
+/* paragraphs, links, lists */
+p, li, a {
+  font-size: clamp(1rem, 10vw, 1.5rem);
+  line-height: 1.3;
+  font-family: "Open Sans", sans-serif;
+
+  min-width: 20ch;
+  max-width: 95ch;
+}
+li, a {
+  list-style-type: none;
+  color: var(--light-grey);
+}
+
+a {
+  text-decoration: none;
+}
+
+i {
+  padding-right: 15px;
+  font-size: 20px;
+}
+
+/* *************** */
+/* Card Grid Layout */
+/* **************** */
+
+.recipe-grid {
+  margin: 0 10vw;
+
+  /* layout */ 
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(20rem, 1fr));
+  grid-gap: 2rem;
+
+  justify-items: center;
+  align-items: center;
+
+}
+
+
+/* ------------- */
+/* Cards Layout */
+/* ------------- */
+
+.card-wrapper {
+  margin: 1rem 0;
+  padding: 0;
+
+  max-width: 30rem;
+
+  border-radius: 25px;
+  box-shadow: 2px 3px 10px 0.2px var(--dark-grey);
+}
+
+.card-wrapper:hover {
+  cursor: pointer;
+  opacity: 0.4;
+}
+
+/* CARD COMPONENTS */
+
+.card-front-top {
+  margin: 0;
+  background: url("../assets/images/stove-pots.jpg");
+  background-position: bottom;
+  background-size: cover;
+  background-repeat: no-repeat;
+
+  border-radius: 25px 25px 0px 0px;
+  min-height: 14rem;
+
+  display: flex;
+  justify-content: flex-end;
+}
+
+.card-content {
+  padding: 1rem 2rem;
+  align-self: flex-start;
+  background-color: var(--light-grey);
+}
+
+.card-footer {
+  background-color: var(--red);
+  border-radius: 0px 0px 25px 25px;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+#ingredients {
+  margin: 0 40px 0 0;
+  font-size: 4rem;
+
+  background-color: var(--light-grey-lowOp);
+
+  border-top: 0;
+  border-radius: 0 0 5px 5px;
+  box-shadow: 2px 2px 5px 0.1px var(--dark-grey);
+}
+
+/* ------------- */
+/* Checkbox Flip */
+/* ------------- */
+
+
+
+/* ------------------------------------- */
+
+
+
+
+/****************/
+/*Main Sections*/
+/***************/
+
+/* -- BODY -- */ 
+
+body {
+  margin: 0;
+  box-sizing: border-box;
+  background-color: var(--white);
+}
+
+/* -- HEAER -- */
+
+header {
+  /*Add an image after working on image editing*/
+  background-color: var(--red);
+
+width: 100vw;
+min-height: 20rem;
+
+margin-bottom: 4rem;
+padding: 2rem 0 4rem 0;
+display: flex;
+flex-direction: column;
+justify-content: flex-end;
+align-items: center;
+}
+header > h1 {
+  max-width: 80vw;
+  
+  text-align: center;
+  font-variant: small-caps;
+  font-weight: 700;
+}
+
+/* -- MAIN -- */
+main {
+  margin: auto;
+  width: 100vw;
+}
+
+/* -- FOOTER -- */
+footer {
+  background-color: var(--black);
+  color: var(--light-grey);
+
+  margin-top: 4rem;
+  min-height: 15rem;
+  max-height: 20rem;
+
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+}
+
+/* *********** */
+/* NAVIGATION */
+/* ********** */
+
+.top-bar {
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: row;
+  background-color: var(--black);
+}
+
+/* Desktop Layout */
+
+@media screen and (min-width: 400px) {
+
+}
+
+
+/* ---------------------------------- */
+
+/* ********************* */
+/* ANIMATIONS & OBJECTS */
+/* ******************** */
+
+/*---------*/
+/*Site Logo*/
+/*---------*/
+
+.site-logo {
+  color: var(--white);
+  margin: 2rem;
+  padding: 5px;
+
+  align-self: center;
+
+
+  display:grid;
+  grid-gap: 10px;
+  grid-template-columns: max-content max-content;
+  grid-template-rows: repeat(3, 1rem);
+  grid-template-areas:
+  "two  one"
+  "two  three"
+  "five four";
+
+  align-items: center;
+}
+
+/* Layout of Items */
+.site-logo > :nth-child(1) {
+  grid-area: two;
+}
+.site-logo > :nth-child(2) {
+  grid-area: one;
+  justify-self: end;
+}
+.site-logo > :nth-child(3) {
+  grid-area: three;
+  justify-self: end;
+}
+.site-logo > :nth-child(4) {
+  grid-area: four;
+  justify-self:end;
+}
+
+/* Style of items */
+.block {
+  grid-area: five;
+  height: 5px;
+  width: 100%;
+  background-color: var(--white);
+  align-self: center;
+  justify-self: center;
+}
+
+.icon {
+  width: 40px;
+  max-height: 40px;
+  object-fit: cover;
+  justify-self: flex-start;
+}
+
+/* Logo Interaction */
+.site-logo:hover {
+  /*Logo animation*/
+  animation-name: logo-animate;
+  animation-duration: 700ms;
+  animation-fill-mode: forwards;
+}
+
+@keyframes logo-animate {
+  100% {
+    opacity: 0.7;
+  }
+}
+
+/* Registration Button */
+.hero-button {
+  background-color: var(--light-grey);
+  color: var(--black);
+  
+  border: none;
+  border-radius: 10px;
+  padding: 10px 2rem;
+
+}
+
+.hero-button:hover {
+  animation-name: button-hover;
+  animation-duration: 500ms;
+  animation-fill-mode: forwards;
+}
+
+@keyframes button-hover {
+  100% {
+    background-color: var(--green);
+  }
+}
