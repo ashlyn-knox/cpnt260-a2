@@ -82,7 +82,7 @@ i {
 /* ------------- */
 
 .card-wrapper {
-  margin: 1rem 0;
+  margin: 2rem;
   padding: 0;
 
   max-width: 30rem;
@@ -167,7 +167,6 @@ header {
   /*Add an image after working on image editing*/
   background-color: var(--red);
 
-width: 100vw;
 min-height: 20rem;
 
 margin-bottom: 4rem;
@@ -210,13 +209,110 @@ footer {
 /* ********** */
 
 .top-bar {
+  background-color: var(--black);
   margin: 0;
   padding: 0;
+
   display: flex;
   flex-direction: row;
-  background-color: var(--black);
+  justify-content: space-between;
+
+  overflow: hidden;
 }
 
+.nav-wrapper {
+ display: block;
+ position: relative;
+
+ top: 10px;
+ z-index: 1;
+}
+
+.nav-links {
+  /*TODO remove this colouring after making sure it all works*/
+  background-color: var(--light-grey);
+  min-width: 10rem;
+  min-height: 12rem;
+  padding: 1rem;
+
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-end;
+}
+.link-box {
+  display: none;
+}
+.nav-wrapper input:checked ~ .link-box {
+  display: block;
+}
+/*TODO Reduce code by fixing link information in typography at END*/
+.nav-links a {
+  color: var(--black);
+  font-size: clamp(1.4rem, 3vw, 2rem);
+  padding: 2px;
+  font-weight: 600;
+}
+/*TODO Use code from a1 to stylize how these links operate*/
+a:hover {
+  background-color: var(--red);
+}
+
+/* --------- */
+/* Hamburger */
+/* --------- */
+.nav-wrapper span {
+  background-color: var(--light-grey);
+  border-radius: 4px;
+  margin-bottom: 6px;
+
+  width: 4rem;
+  height: 8px;
+
+  top: 2rem;
+  right: 4.2rem;
+  position: relative;
+
+  display: block;
+  z-index: 1;
+
+  /*Transition*/
+transition: transform 0.5s cubic-bezier(0.77, 0, 0.175, 1), opacity 0.6s ease;
+}
+
+
+/* Checkbox */
+.nav-wrapper input {
+  width: 4rem;
+  height: 4rem;
+  
+  position: absolute;
+  top: 1.5rem;
+  left: -4.45rem;
+  cursor: pointer;
+  /*TODO UNCOMMENT WHEN FINISHED*/
+  opacity: 0;
+  z-index: 2;
+
+}
+
+/* Hamburger to X animation */
+.nav-wrapper input:checked ~ span {
+  transform: rotate(45deg) translate(12px, 15px);
+  opacity: 0.8;
+}
+
+/*Rotate last bar */
+.nav-wrapper input:checked ~ span:nth-last-child(2) {
+  transform: rotate(-45deg) translate(5px, -7px);
+  opacity: 0.8;
+}
+
+/* Hide Middle Bar */
+.nav-wrapper input:checked ~ span:nth-child(3) {
+  opacity: 0;
+}
 /* Desktop Layout */
 
 @media screen and (min-width: 400px) {
