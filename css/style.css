@@ -94,7 +94,7 @@ i {
   cursor: pointer;
   opacity: 0.6;
 }
-.card-front-top > .card-flip {
+.card-front-top > #card-flip-1, .card-front-top > #card-flip-2, .card-front-top > #card-flip-3 {
   display: none;
 }
 
@@ -134,7 +134,7 @@ i {
   align-items: center;
 }
 
-#ingredients {
+.ingredients {
   margin: 0 40px 0 0;
   font-size: 4rem;
 
